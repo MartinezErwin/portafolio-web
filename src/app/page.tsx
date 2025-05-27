@@ -37,8 +37,17 @@ export default function Home() {
       </div>
 
       <h2 className="[font-family:var(--font-jomhuria)] text-7xl">
-        Hola soy Erwin
+        Hola soy Erwin Martinez
       </h2>
+
+      <div className="rounden-lg w-full bg-black p-10">
+        <p className="px-5 text-center text-lg font-semibold text-white lg:px-50">
+          Soy un apasionado desarrollador web fullstack con experiencia en
+          tecnologías modernas. Me encanta crear aplicaciones web que sean
+          funcionales y atractivas. Además, soy una persona comprometida con mi
+          trabajo y siempre busco ser creativo en cada proyecto que realizo.
+        </p>
+      </div>
     </main>
   );
 }
