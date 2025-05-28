@@ -1,1 +1,61 @@
 @import "tailwindcss";
+
+/* Variables CSS para temas */
+:root {
+  /* Tema claro */
+  --bg-primary: #ffffff;
+  --bg-secondary: #000000;
+  --text-primary: #000000;
+  --text-secondary: #ffffff;
+  --accent-bg: #f3f4f6;
+  --accent-hover: #e5e7eb;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+  /* Tema oscuro */
+  --bg-primary: #000000;
+  --bg-secondary: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: #000000;
+  --accent-bg: #374151;
+  --accent-hover: #4b5563;
+  --shadow: rgba(255, 255, 255, 0.1);
+}
+
+/* Clases de tema personalizadas */
+.theme-bg {
+  background-color: var(--bg-primary);
+}
+
+.theme-bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.theme-text {
+  color: var(--text-primary);
+}
+
+.theme-text-secondary {
+  color: var(--text-secondary);
+}
+
+.theme-accent {
+  background-color: var(--accent-bg);
+}
+
+.theme-accent:hover {
+  background-color: var(--accent-hover);
+}
+
+.theme-shadow {
+  box-shadow: 0 1px 3px var(--shadow);
+}
+
+/* Transiciones suaves */
+* {
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}

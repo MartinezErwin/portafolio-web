@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Jomhuria } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -10,9 +12,9 @@ const geistSans = Geist({
 });
 
 const jomhuria = Jomhuria({
-  weight: "400", // Solo tiene un peso
+  weight: "400",
   subsets: ["latin"],
-  variable: "--font-jomhuria", // Nombre de tu variable CSS
+  variable: "--font-jomhuria",
 });
 
 const geistMono = Geist_Mono({
@@ -31,12 +33,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${jomhuria.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${jomhuria.variable} theme-bg theme-text min-h-screen antialiased`}
       >
-        <Header />
-        {children}
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange={false}
+        >
+          <div className="flex min-h-screen flex-col">
+            <Header />
+            <main className="flex-1">{children}</main>
+            <Footer />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

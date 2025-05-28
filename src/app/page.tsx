@@ -3,7 +3,7 @@ import { tecnologias } from "@/data/Tecnologias";
 
 export default function Home() {
   return (
-    <main className="flex flex-col items-center justify-center overflow-hidden bg-white px-8 py-2 text-black">
+    <div className="flex flex-col items-center justify-center px-8 py-12">
       <h1 className="text-center [font-family:var(--font-jomhuria)] text-8xl font-normal">
         DESARROLLADOR WEB FULLSTACK
       </h1>
@@ -12,7 +12,7 @@ export default function Home() {
         {tecnologias.map((tech) => (
           <span
             key={tech.name}
-            className="flex items-center gap-2 rounded-full bg-black px-3 py-1 text-sm font-semibold text-white"
+            className="theme-bg-secondary theme-text-secondary flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold"
           >
             <Image
               width={4}
@@ -25,7 +25,8 @@ export default function Home() {
           </span>
         ))}
       </div>
-      <div className="mt-6 flex h-52 w-52 items-center justify-center overflow-hidden rounded-full bg-black">
+
+      <div className="theme-bg-secondary mt-6 flex h-52 w-52 items-center justify-center overflow-hidden rounded-full">
         <Image
           src="/perfil.png"
           alt="Perfil de Erwin"
@@ -36,18 +37,18 @@ export default function Home() {
         />
       </div>
 
-      <h2 className="[font-family:var(--font-jomhuria)] text-7xl">
+      <h2 className="mt-4 [font-family:var(--font-jomhuria)] text-7xl">
         Hola soy Erwin Martinez
       </h2>
 
-      <div className="rounden-lg w-full bg-black p-10">
-        <p className="px-5 text-center text-lg font-semibold text-white lg:px-50">
+      <div className="theme-bg-secondary mt-6 w-full rounded-lg p-10">
+        <p className="theme-text-secondary px-5 text-center text-lg font-semibold lg:px-20">
           Soy un apasionado desarrollador web fullstack con experiencia en
           tecnologías modernas. Me encanta crear aplicaciones web que sean
           funcionales y atractivas. Además, soy una persona comprometida con mi
           trabajo y siempre busco ser creativo en cada proyecto que realizo.
         </p>
       </div>
-    </main>
+    </div>
   );
 }
