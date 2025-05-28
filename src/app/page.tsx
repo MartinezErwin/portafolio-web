@@ -3,8 +3,8 @@ import { tecnologias } from "@/data/Tecnologias";
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center px-8 py-12">
-      <h1 className="text-center [font-family:var(--font-jomhuria)] text-8xl font-normal">
+    <div className="flex flex-col items-center justify-center px-8 py-4">
+      <h1 className="text-center [font-family:var(--font-jomhuria)] text-8xl font-normal lg:text-left">
         DESARROLLADOR WEB FULLSTACK
       </h1>
 
@@ -37,7 +37,7 @@ export default function Home() {
         />
       </div>
 
-      <h2 className="mt-4 [font-family:var(--font-jomhuria)] text-7xl">
+      <h2 className="mt-4 text-center [font-family:var(--font-jomhuria)] text-7xl lg:text-left">
         Hola soy Erwin Martinez
       </h2>
 
