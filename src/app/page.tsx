@@ -8,7 +8,7 @@ export default function Home() {
         DESARROLLADOR WEB FULLSTACK
       </h1>
 
-      <div className="mt-4 flex flex-wrap justify-center gap-2">
+      <div className="flex flex-wrap justify-center gap-2 lg:mx-60">
         {tecnologias.map((tech) => (
           <span
             key={tech.name}
@@ -42,9 +42,9 @@ export default function Home() {
       </h2>
 
       <div className="theme-bg-secondary mt-6 w-full rounded-lg p-10">
-        <p className="theme-text-secondary px-5 text-center text-lg font-semibold lg:px-20">
+        <p className="theme-text-secondary px-5 text-center text-lg font-semibold lg:px-50">
           Soy un apasionado desarrollador web fullstack con experiencia en
-          tecnologías modernas. Me encanta crear aplicaciones web que sean
+          tecnologías modernas, me encanta crear aplicaciones web que sean
           funcionales y atractivas. Además, soy una persona comprometida con mi
           trabajo y siempre busco ser creativo en cada proyecto que realizo.
         </p>

@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Variables CSS para temas */
 :root {
   /* Tema claro */
   --bg-primary: #ffffff;
