@@ -41,14 +41,24 @@ export default function Home() {
         Hola soy Erwin Martinez
       </h2>
 
-      <div className="theme-bg-secondary mt-6 w-full rounded-lg p-10">
-        <p className="theme-text-secondary px-5 text-center text-lg font-semibold lg:px-50">
-          Soy un apasionado desarrollador web fullstack con experiencia en
-          tecnologías modernas, me encanta crear aplicaciones web que sean
-          funcionales y atractivas. Además, soy una persona comprometida con mi
-          trabajo y siempre busco ser creativo en cada proyecto que realizo.
-        </p>
+      <div className="relative w-full">
+        <div className="theme-bg-secondary h-full rounded-lg p-15 text-center sm:h-60 sm:p-10">
+          <p className="theme-text-secondary px-4 text-base font-semibold sm:px-10 sm:text-lg lg:px-52">
+            Soy un apasionado desarrollador web fullstack con experiencia en
+            tecnologías modernas. Me encanta crear aplicaciones web que sean
+            funcionales y atractivas. Además, soy una persona comprometida con
+            mi trabajo y siempre busco ser creativo en cada proyecto que
+            realizo.
+          </p>
+        </div>
+        <div className="absolute top-full left-1/2 z-10 -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-gray-200 px-20 py-6 shadow-lg sm:px-12 md:px-20 lg:px-28 xl:px-96">  
+          <h3 className="text-center [font-family:var(--font-jomhuria)] text-4xl text-black sm:text-5xl md:text-6xl">
+            PORTAFOLIO
+          </h3>
+        </div>
       </div>
+
+      <div className="p-20"></div>
     </div>
   );
 }
