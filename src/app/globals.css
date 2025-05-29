@@ -13,12 +13,12 @@
   --project-card-border: #e2e8f0;
   --project-title-color: #1e293b;
   --project-description-color: #64748b;
-  --btn-primary-bg: #3b82f6;
-  --btn-primary-hover: #2563eb;
+  --btn-primary-bg: #030303;
+  --btn-primary-hover: #555555;
   --btn-primary-text: #ffffff;
   --btn-secondary-bg: transparent;
-  --btn-secondary-border: #3b82f6;
-  --btn-secondary-text: #3b82f6;
+  --btn-secondary-border: #000000;
+  --btn-secondary-text: #060606;
   --btn-secondary-hover: #eff6ff;
   --dot-active: #3b82f6;
   --dot-inactive: #cbd5e1;

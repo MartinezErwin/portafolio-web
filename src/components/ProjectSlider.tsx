@@ -49,13 +49,13 @@ export default function ProjectSlider() {
                   alt={proyecto.title}
                   width={300}
                   height={200}
-                  className="mb-4 h-48 w-full rounded-lg object-cover shadow-md"
+                  className="object-cover w-full h-48 mb-4 rounded-lg shadow-md"
                 />
-                <div className="w-full flex-1">
-                  <h4 className="project-title mb-2 text-center text-xl font-semibold">
+                <div className="flex-1 w-full">
+                  <h4 className="mb-2 text-xl font-semibold text-center project-title">
                     {proyecto.title}
                   </h4>
-                  <p className="project-description mb-4 text-center text-sm">
+                  <p className="mb-4 text-sm text-center project-description">
                     {proyecto.description}
                   </p>
                 </div>
@@ -63,13 +63,13 @@ export default function ProjectSlider() {
                   <Link
                     href={proyecto.link}
                     target="_blank"
-                    className="btn-primary flex-1 rounded-lg px-4 py-2 text-center font-medium transition-all duration-200"
+                    className="flex-1 px-4 py-2 font-medium text-center transition-all duration-200 rounded-lg btn-primary"
                   >
                     Ver Demo
                   </Link>
                   <Link
                     href={proyecto.detailPage}
-                    className="btn-secondary flex-1 rounded-lg px-4 py-2 text-center font-medium transition-all duration-200"
+                    className="flex-1 px-4 py-2 font-medium text-center transition-all duration-200 rounded-lg btn-secondary"
                   >
                     Conocer Más
                   </Link>
