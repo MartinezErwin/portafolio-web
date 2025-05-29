@@ -20,10 +20,10 @@ export default function Header() {
             <Link href="/" className="hover:underline">
               Inicio
             </Link>
-            <Link href="/projects" className="hover:underline">
+            <Link href="/proyectos" className="hover:underline">
               Proyectos
             </Link>
-            <Link href="/contact" className="hover:underline">
+            <Link href="/contacto" className="hover:underline">
               Contacto
             </Link>
           </nav>

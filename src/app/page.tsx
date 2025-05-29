@@ -37,7 +37,7 @@ export default function Home() {
           width={100}
           height={100}
           priority
-          className="w-24 object-cover sm:w-40"
+          className="w-24 object-contain sm:w-40"
         />
       </div>
 
