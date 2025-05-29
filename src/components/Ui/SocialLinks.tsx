@@ -15,7 +15,7 @@ export default function SocialLinks() {
       </Link>
 
       <Link
-        href="https://github.com/tuusuario"
+        href="https://github.com/ErwinPlaza064"
         target="_blank"
         rel="noopener noreferrer"
         className="theme-primary rounded-lg p-2 transition-all duration-200 hover:scale-110"

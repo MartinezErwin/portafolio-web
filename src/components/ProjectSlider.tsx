@@ -43,19 +43,19 @@ export default function ProjectSlider() {
         <div ref={sliderRef} className="keen-slider">
           {Proyectos.map((proyecto) => (
             <div key={proyecto.id} className="keen-slider__slide">
-              <div className="mx-auto flex h-full min-h-[400px] max-w-md flex-col items-center justify-center rounded-lg bg-white p-6 shadow-md">
+              <div className="project-card mx-auto flex h-full min-h-[400px] max-w-md flex-col items-center justify-center rounded-xl p-6 shadow-lg">
                 <Image
                   src={proyecto.image}
                   alt={proyecto.title}
                   width={300}
                   height={200}
-                  className="object-cover w-full h-48 mb-4 rounded"
+                  className="mb-4 h-48 w-full rounded-lg object-cover shadow-md"
                 />
-                <div className="flex-1 w-full">
-                  <h4 className="mb-2 text-xl font-semibold text-center">
+                <div className="w-full flex-1">
+                  <h4 className="project-title mb-2 text-center text-xl font-semibold">
                     {proyecto.title}
                   </h4>
-                  <p className="mb-4 text-sm text-center text-gray-600">
+                  <p className="project-description mb-4 text-center text-sm">
                     {proyecto.description}
                   </p>
                 </div>
@@ -63,13 +63,13 @@ export default function ProjectSlider() {
                   <Link
                     href={proyecto.link}
                     target="_blank"
-                    className="flex-1 px-4 py-2 text-center text-white transition bg-blue-500 rounded hover:bg-blue-600"
+                    className="btn-primary flex-1 rounded-lg px-4 py-2 text-center font-medium transition-all duration-200"
                   >
                     Ver Demo
                   </Link>
                   <Link
                     href={proyecto.detailPage}
-                    className="flex-1 px-4 py-2 text-center text-white transition bg-gray-500 rounded hover:bg-gray-600"
+                    className="btn-secondary flex-1 rounded-lg px-4 py-2 text-center font-medium transition-all duration-200"
                   >
                     Conocer Más
                   </Link>
@@ -105,7 +105,7 @@ export default function ProjectSlider() {
       </div>
 
       {loaded && instanceRef.current && (
-        <div className="flex justify-center mt-4 space-x-2">
+        <div className="mt-4 flex justify-center space-x-2">
           {[
             ...Array(instanceRef.current.track.details.slides.length).keys(),
           ].map((idx) => {
@@ -115,8 +115,10 @@ export default function ProjectSlider() {
                 onClick={() => {
                   instanceRef.current?.moveToIdx(idx);
                 }}
-                className={`h-3 w-3 rounded-full transition-colors ${
-                  currentSlide === idx ? "bg-blue-500" : "bg-gray-300"
+                className={`dot h-3 w-3 rounded-full transition-all duration-300 ${
+                  currentSlide === idx
+                    ? "dot-active scale-125"
+                    : "dot-inactive hover:dot-hover"
                 }`}
               />
             );
@@ -134,12 +136,12 @@ function Arrow(props: {
 }) {
   const disabled = props.disabled
     ? "opacity-50 cursor-not-allowed"
-    : "cursor-pointer hover:text-blue-500";
+    : "cursor-pointer arrow-hover";
 
   return (
     <svg
       onClick={props.onClick}
-      className={`absolute top-1/2 h-8 w-8 -translate-y-1/2 transform text-gray-600 transition-colors ${
+      className={`arrow absolute top-1/2 h-8 w-8 -translate-y-1/2 transform transition-colors duration-200 ${
         props.left ? "left-2" : "right-2"
       } ${disabled}`}
       xmlns="http://www.w3.org/2000/svg"

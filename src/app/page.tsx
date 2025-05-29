@@ -2,9 +2,11 @@ import Image from "next/image";
 import { tecnologias } from "@/data/Tecnologias";
 import ProjectSlider from "@/components/ProjectSlider";
 
+import Link from "next/link";
+
 export default function Home() {
   return (
-    <div className="flex flex-col items-center justify-center px-4 py-4 sm:px-8">
+    <main className="flex flex-col items-center justify-center px-4 py-4 sm:px-8">
       <h1 className="text-center [font-family:var(--font-jomhuria)] text-5xl font-normal sm:text-6xl lg:text-left lg:text-8xl">
         DESARROLLADOR WEB FULLSTACK
       </h1>
@@ -42,25 +44,48 @@ export default function Home() {
         Hola soy Erwin Martinez
       </h2>
 
-      <div className="relative w-full">
-        <div className="theme-bg-secondary min-h-40 rounded-lg p-6 text-center sm:h-60 sm:p-10 lg:p-15">
-          <p className="theme-text-secondary px-2 text-sm font-semibold sm:px-10 sm:text-base lg:px-52 lg:text-lg">
+      <div className="w-full">
+        <div className="theme-bg-secondary flex min-h-40 flex-col items-center justify-center rounded-lg p-6 sm:h-60 sm:p-10 lg:p-15">
+          <p className="theme-text-secondary px-2 text-center text-sm font-semibold sm:px-10 sm:text-base lg:px-52 lg:text-lg">
             Soy un apasionado desarrollador web fullstack con experiencia en
             tecnologías modernas. Me encanta crear aplicaciones web que sean
             funcionales y atractivas. Además, soy una persona comprometida con
             mi trabajo y siempre busco ser creativo en cada proyecto que
             realizo.
           </p>
+          <div className="py-3">
+            <Link
+              className="theme-text-secondary inline-flex items-center gap-2 rounded-lg border-2 border-white/30 bg-white/10 px-6 py-3 font-semibold backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20 hover:shadow-lg"
+              href="/cv.pdf"
+              target="_blank"
+            >
+              <svg
+                className="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+              Descarga mi CV
+            </Link>
+          </div>
         </div>
-        <div className="absolute top-full left-1/2 z-10 mt-20 w-[90vw] max-w-md -translate-x-1/2 -translate-y-1/2 rounded-2xl bg-gray-200 px-4 py-6 shadow-lg sm:mt-32 sm:w-80 lg:mt-60 lg:w-full lg:max-w-6xl lg:px-8">
-          <h3 className="mb-4 text-center [font-family:var(--font-jomhuria)] text-3xl text-black sm:text-4xl md:text-5xl lg:mb-6 lg:text-6xl">
+
+        <div className="mx-auto mt-8 w-full max-w-md rounded-2xl bg-gray-200 px-4 py-6 shadow-lg sm:mt-12 sm:max-w-lg lg:mt-16 lg:max-w-6xl lg:px-8">
+          <h3 className="mb-4 text-center [font-family:var(--font-jomhuria)] text-4xl text-black sm:text-4xl md:text-5xl lg:mb-6 lg:text-6xl">
             PORTAFOLIO
           </h3>
           <ProjectSlider />
         </div>
       </div>
 
-      <div className="p-72"></div>
-    </div>
+      <div className="py-8 sm:py-24 lg:py-14"></div>
+    </main>
   );
 }
