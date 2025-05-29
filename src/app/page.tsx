@@ -82,6 +82,7 @@ export default function Home() {
             PORTAFOLIO
           </h3>
           <ProjectSlider />
+          <hr className="my-10 border-t-2 border-gray-400" />
         </div>
       </div>
 

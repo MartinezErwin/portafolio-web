@@ -103,28 +103,6 @@ export default function ProjectSlider() {
           </>
         )}
       </div>
-
-      {loaded && instanceRef.current && (
-        <div className="mt-4 flex justify-center space-x-2">
-          {[
-            ...Array(instanceRef.current.track.details.slides.length).keys(),
-          ].map((idx) => {
-            return (
-              <button
-                key={idx}
-                onClick={() => {
-                  instanceRef.current?.moveToIdx(idx);
-                }}
-                className={`dot h-3 w-3 rounded-full transition-all duration-300 ${
-                  currentSlide === idx
-                    ? "dot-active scale-125"
-                    : "dot-inactive hover:dot-hover"
-                }`}
-              />
-            );
-          })}
-        </div>
-      )}
     </>
   );
 }
