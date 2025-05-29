@@ -3,6 +3,7 @@ import { tecnologias } from "@/data/Tecnologias";
 import ProjectSlider from "@/components/ProjectSlider";
 
 import Link from "next/link";
+import Titles from "@/components/Util/Titles";
 
 export default function Home() {
   return (
@@ -78,11 +79,18 @@ export default function Home() {
         </div>
 
         <div className="mx-auto mt-8 w-full max-w-md rounded-2xl bg-gray-200 px-4 py-6 shadow-lg sm:mt-12 sm:max-w-lg lg:mt-16 lg:max-w-6xl lg:px-8">
-          <h3 className="mb-4 text-center [font-family:var(--font-jomhuria)] text-4xl text-black sm:text-4xl md:text-5xl lg:mb-6 lg:text-6xl">
-            PORTAFOLIO
-          </h3>
+          <Titles title="Proyectos" />
           <ProjectSlider />
           <hr className="my-10 border-t-2 border-gray-400" />
+          <Titles title="Estudios" />
+          <p className="px-20 text-center text-lg font-semibold text-gray-700">
+            Tsu En Área De Desarrollo Y Software:{" "}
+            <span className="text-blue-500">Concluido</span> {""}
+          </p>
+          <p className="mt-4 px-20 text-center text-lg font-semibold text-gray-700">
+            Ingeneria En Area de Desarrollo Y Software Multiplataforma:{" "}
+            <span className="text-blue-500">Concluido</span>
+          </p>
         </div>
       </div>
 
