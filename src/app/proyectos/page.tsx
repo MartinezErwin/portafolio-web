@@ -13,7 +13,7 @@ export default function SundownertechProyecto() {
           desarrollado.
         </p>
       </div>
-      <div className="flex gap-10">
+      <div className="flex-wrap gap-10 lg:flex lg:justify-center">
         {Proyectos.map((proyecto) => (
           <div key={proyecto.id}>
             <div className="project-card mx-auto flex h-full min-h-[400px] max-w-md flex-col items-center justify-center rounded-xl p-6 shadow-lg">
