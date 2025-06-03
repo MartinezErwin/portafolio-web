@@ -2,15 +2,6 @@ import nodemailer from "nodemailer";
 
 export async function POST(request) {
   try {
-    // Log para debug en Vercel
-    console.log("=== INICIO DEBUG ===");
-    console.log("Nodemailer version:", nodemailer.version || "No disponible");
-    console.log("Variables de entorno disponibles:", {
-      EMAIL_USER: process.env.EMAIL_USER ? "✓" : "✗",
-      EMAIL_PASS: process.env.EMAIL_PASS ? "✓" : "✗",
-      EMAIL_TO: process.env.EMAIL_TO ? "✓" : "✗",
-    });
-
     const body = await request.json();
     const { nombre, email, mensaje } = body;
 
@@ -30,7 +21,6 @@ export async function POST(request) {
       !process.env.EMAIL_PASS ||
       !process.env.EMAIL_TO
     ) {
-      console.error("Variables de entorno faltantes");
       return new Response(
         JSON.stringify({ error: "Configuración del servidor incompleta" }),
         {
@@ -48,14 +38,8 @@ export async function POST(request) {
       });
     }
 
-    // Verificar si nodemailer tiene el método correcto
-    console.log("Tipo de nodemailer:", typeof nodemailer);
-    console.log("Métodos disponibles:", Object.keys(nodemailer));
-
-    // Configuración específica para Gmail en Vercel - MÉTODO CORRECTO
-    console.log("Creando transporter con configuración Gmail...");
+    // Configuración específica para Gmail en Vercel
     const transporter = nodemailer.createTransport({
-      // SIN 'r' al final
       service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
@@ -68,14 +52,7 @@ export async function POST(request) {
     });
 
     // Verificar conexión
-    console.log("Verificando conexión SMTP...");
-    try {
-      await transporter.verify();
-      console.log("✅ Conexión SMTP verificada correctamente");
-    } catch (verifyError) {
-      console.error("❌ Error de verificación:", verifyError.message);
-      throw verifyError;
-    }
+    await transporter.verify();
 
     const mailOptionsToYou = {
       from: `"Portafolio Web" <${process.env.EMAIL_USER}>`,
@@ -144,19 +121,12 @@ export async function POST(request) {
       `,
     };
 
-    // Enviar emails con mejor manejo de errores
-    console.log("📧 Enviando email principal...");
+    // Enviar emails
     const result1 = await transporter.sendMail(mailOptionsToYou);
-    console.log("✅ Email principal enviado:", result1.messageId);
-
-    console.log("📧 Enviando email de confirmación...");
     const result2 = await transporter.sendMail(mailOptionsToUser);
-    console.log("✅ Email de confirmación enviado:", result2.messageId);
 
     // Cerrar el transporter
     transporter.close();
-
-    console.log("🎉 Proceso completado exitosamente");
 
     return new Response(
       JSON.stringify({
@@ -170,14 +140,6 @@ export async function POST(request) {
       },
     );
   } catch (error) {
-    console.error("💥 Error detallado:", {
-      message: error.message,
-      code: error.code,
-      command: error.command,
-      name: error.name,
-      stack: error.stack, // Mostrar stack completo para debug
-    });
-
     return new Response(
       JSON.stringify({
         error: "Error interno del servidor",

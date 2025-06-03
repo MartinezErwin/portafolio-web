@@ -22,7 +22,6 @@ export default function ThemeToggle() {
       onClick={() => {
         const newTheme = isDark ? "light" : "dark";
         setTheme(newTheme);
-        console.log("Cambiando tema a:", newTheme);
       }}
       className="theme-accent rounded-lg p-2 transition-all duration-200"
       aria-label="Toggle theme"
