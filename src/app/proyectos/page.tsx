@@ -1,13 +1,14 @@
 import { Proyectos } from "@/data/Proyectos";
 import Image from "next/image";
 import Link from "next/link";
-import Titles from "@/components/Util/Titles";
 
 export default function SundownertechProyecto() {
   return (
     <section className="flex flex-col items-center justify-center gap-10 px-4 py-4 sm:px-8">
       <div className="text-center">
-        <Titles title="Mis proyectos" />
+        <h1 className="text-center [font-family:var(--font-jomhuria)] text-5xl font-normal sm:text-6xl lg:text-8xl">
+          MIS PROYECTOS
+        </h1>
         <p className="text-lg text-gray-600">
           Aquí puedes ver algunos de los proyectos más destacados que he
           desarrollado.
@@ -22,13 +23,13 @@ export default function SundownertechProyecto() {
                 alt={proyecto.title}
                 width={300}
                 height={200}
-                className="object-cover w-full h-48 mb-4 rounded-lg shadow-md"
+                className="mb-4 h-48 w-full rounded-lg object-cover shadow-md"
               />
-              <div className="flex-1 w-full">
-                <h4 className="mb-2 text-xl font-semibold text-center project-title">
+              <div className="w-full flex-1">
+                <h4 className="project-title mb-2 text-center text-xl font-semibold">
                   {proyecto.title}
                 </h4>
-                <p className="mb-4 text-sm text-center project-description">
+                <p className="project-description mb-4 text-center text-sm">
                   {proyecto.description}
                 </p>
               </div>
@@ -36,13 +37,13 @@ export default function SundownertechProyecto() {
                 <Link
                   href={proyecto.link}
                   target="_blank"
-                  className="flex-1 px-4 py-2 font-medium text-center transition-all duration-200 rounded-lg btn-primary"
+                  className="btn-primary flex-1 rounded-lg px-4 py-2 text-center font-medium transition-all duration-200"
                 >
                   Ver
                 </Link>
                 <Link
                   href={proyecto.detailPage}
-                  className="flex-1 px-4 py-2 font-medium text-center transition-all duration-200 rounded-lg btn-secondary"
+                  className="btn-secondary flex-1 rounded-lg px-4 py-2 text-center font-medium transition-all duration-200"
                 >
                   Conocer Más
                 </Link>

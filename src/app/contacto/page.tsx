@@ -1,7 +1,47 @@
+"use client";
 import Link from "next/link";
 import Titles from "@/components/Util/Titles";
+import { useState } from "react";
 
 export default function ContactPage() {
+  const [formData, setFormData] = useState({
+    nombre: "",
+    email: "",
+    mensaje: "",
+  });
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    try {
+      const res = await fetch("/api/contact", {
+        // Quité la barra final
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (res.ok) {
+        alert("Mensaje enviado correctamente");
+        setFormData({ nombre: "", email: "", mensaje: "" });
+      } else {
+        alert("Hubo un error al enviar el mensaje");
+      }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (error) {
+      alert("Error de red al enviar mensaje");
+    }
+  };
+
   return (
     <div className="flex flex-col items-center justify-center px-4 py-4 sm:px-8">
       <div className="w-full max-w-4xl">
@@ -11,7 +51,6 @@ export default function ContactPage() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           <div className="group cursor-pointer rounded-2xl bg-white p-6 shadow-lg transition-all hover:scale-105 hover:shadow-xl">
-            <div></div>
             <div className="flex flex-col items-center text-center">
               <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-blue-100">
                 <svg
@@ -30,7 +69,7 @@ export default function ContactPage() {
               </div>
               <h3 className="mb-2 font-bold text-gray-800">Email</h3>
               <Link
-                href="mailto:erwin@example.com"
+                href="mailto:plazaerwin41@gmail.com"
                 className="text-sm text-gray-600 hover:text-blue-600"
               >
                 plazaerwin41@gmail.com
@@ -57,7 +96,7 @@ export default function ContactPage() {
               </div>
               <h3 className="mb-2 font-bold text-gray-800">Teléfono</h3>
               <Link
-                href="tel:+521234567890"
+                href="tel:+524641123632"
                 className="text-sm text-gray-600 hover:text-green-600"
               >
                 +52 464 112 3632
@@ -87,41 +126,50 @@ export default function ContactPage() {
             </div>
           </div>
         </div>
+
         <div className="mt-16 rounded-3xl bg-gray-50 p-8 shadow-xl sm:p-12">
           <div className="mx-auto max-w-2xl">
             <Titles title="Contactame" />
 
-            <form className="mt-8 space-y-6">
+            <form onSubmit={handleSubmit} className="mt-8 space-y-6">
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="relative">
                   <input
                     type="text"
+                    name="nombre"
                     placeholder="Nombre"
-                    className="peer w-full rounded-2xl border-2 border-gray-200 bg-white px-6 py-4 text-lg transition-all focus:border-blue-500 focus:outline-none"
+                    value={formData.nombre}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border-2 border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
                     required
                   />
                 </div>
                 <div className="relative">
                   <input
                     type="email"
+                    name="email"
                     placeholder="Email"
-                    className="peer w-full rounded-2xl border-2 border-gray-200 bg-white px-6 py-4 text-lg transition-all focus:border-blue-500 focus:outline-none"
+                    value={formData.email}
+                    onChange={handleChange}
+                    className="w-full rounded-xl border-2 border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
                     required
                   />
                 </div>
               </div>
-
               <textarea
+                name="mensaje"
                 rows={6}
                 placeholder="Describe tu proyecto o idea..."
-                className="w-full resize-none rounded-2xl border-2 border-gray-200 bg-white px-6 py-4 text-lg transition-all focus:border-blue-500 focus:outline-none"
+                value={formData.mensaje}
+                onChange={handleChange}
+                className="w-full resize-none rounded-xl border-2 border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
                 required
-              ></textarea>
+              />
 
               <div className="text-center">
                 <button
                   type="submit"
-                  className="inline-flex items-center gap-3 rounded-2xl bg-black px-12 py-4 text-lg font-semibold text-white transition-all hover:scale-105 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg"
+                  className="inline-flex items-center gap-3 rounded-2xl bg-black px-12 py-4 text-lg font-semibold text-white transition-all hover:scale-105 hover:bg-gray-800 hover:shadow-lg"
                 >
                   Enviar Mensaje
                 </button>

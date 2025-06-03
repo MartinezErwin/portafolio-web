@@ -12,10 +12,10 @@ export default function Header() {
   };
 
   return (
-    <header className="p-4 theme-bg theme-shadow theme-text">
+    <header className="theme-bg theme-shadow theme-text p-4">
       <div className="flex items-center justify-between">
         <div className="text-xl font-bold">PORTAFOLIO</div>
-        <div className="items-center hidden gap-6 md:flex">
+        <div className="hidden items-center gap-6 md:flex">
           <nav className="flex gap-4">
             <Link href="/" className="hover:underline">
               Inicio
@@ -34,12 +34,12 @@ export default function Header() {
           <ThemeToggle />
           <button
             onClick={toggleMenu}
-            className="p-2 transition-all duration-200 rounded-lg theme-accent"
+            className="theme-accent rounded-lg p-2 transition-all duration-200"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? (
               <svg
-                className="w-6 h-6"
+                className="h-6 w-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -53,7 +53,7 @@ export default function Header() {
               </svg>
             ) : (
               <svg
-                className="w-6 h-6"
+                className="h-6 w-6"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -70,7 +70,7 @@ export default function Header() {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="pt-4 mt-4 border-t border-gray-300 md:hidden">
+        <div className="mt-4 border-t border-gray-300 pt-4 md:hidden">
           <nav className="flex flex-col gap-4">
             <Link
               href="/"
@@ -80,14 +80,14 @@ export default function Header() {
               Inicio
             </Link>
             <Link
-              href="#projects"
+              href="/proyectos"
               className="py-2 hover:underline"
               onClick={() => setIsMenuOpen(false)}
             >
               Proyectos
             </Link>
             <Link
-              href="/contact"
+              href="/contacto"
               className="py-2 hover:underline"
               onClick={() => setIsMenuOpen(false)}
             >
