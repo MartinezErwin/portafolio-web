@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 export async function POST(request) {
   try {
     // Log para debug en Vercel
+    console.log("=== INICIO DEBUG ===");
     console.log("Variables de entorno disponibles:", {
       EMAIL_USER: process.env.EMAIL_USER ? "✓" : "✗",
       EMAIL_PASS: process.env.EMAIL_PASS ? "✓" : "✗",
@@ -46,29 +47,36 @@ export async function POST(request) {
       });
     }
 
-    // Configuración mejorada para Vercel
+    // Configuración específica para Gmail en Vercel
+    console.log("Creando transporter con configuración Gmail...");
     const transporter = nodemailer.createTransporter({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false,
+      service: "gmail", // Usar el servicio predefinido de Gmail
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
-      tls: {
-        rejectUnauthorized: false,
-      },
+      // Configuraciones adicionales para Vercel
+      pool: true,
+      maxConnections: 1,
+      rateDelta: 20000,
+      rateLimit: 5,
     });
 
     // Verificar conexión
-    await transporter.verify();
-    console.log("Conexión SMTP verificada correctamente");
+    console.log("Verificando conexión SMTP...");
+    try {
+      await transporter.verify();
+      console.log("✅ Conexión SMTP verificada correctamente");
+    } catch (verifyError) {
+      console.error("❌ Error de verificación:", verifyError.message);
+      throw verifyError;
+    }
 
     const mailOptionsToYou = {
-      from: process.env.EMAIL_USER,
+      from: `"Portafolio Web" <${process.env.EMAIL_USER}>`,
       to: process.env.EMAIL_TO,
       replyTo: email,
-      subject: `Nuevo mensaje de contacto de ${nombre}`,
+      subject: `🔔 Nuevo mensaje de contacto de ${nombre}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #333; border-bottom: 2px solid #4F46E5; padding-bottom: 10px;">
@@ -83,12 +91,15 @@ export async function POST(request) {
               ${mensaje.replace(/\n/g, "<br>")}
             </div>
           </div>
+          <p style="color: #666; font-size: 12px;">
+            Enviado desde el formulario de contacto del portafolio web
+          </p>
         </div>
       `,
     };
 
     const mailOptionsToUser = {
-      from: process.env.EMAIL_USER,
+      from: `"Erwin Martinez - Desarrollador" <${process.env.EMAIL_USER}>`,
       to: email,
       subject: "✅ Mensaje recibido - Erwin Martinez",
       html: `
@@ -99,6 +110,7 @@ export async function POST(request) {
           <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <p>Hola <strong>${nombre}</strong>,</p>
             <p>He recibido tu mensaje y me pondré en contacto contigo lo antes posible.</p>
+            <p>Generalmente respondo en un plazo de 24-48 horas.</p>
           </div>
           
           <div style="background-color: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -108,28 +120,44 @@ export async function POST(request) {
             </div>
           </div>
 
+          <div style="text-align: center; margin: 30px 0;">
+            <p style="color: #666;">Mientras tanto, puedes revisar mi trabajo:</p>
+            <a href="https://github.com/ErwinPlaza064" style="color: #4F46E5; text-decoration: none;">
+              🔗 GitHub: ErwinPlaza064
+            </a>
+          </div>
+
+          <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
+          
           <p style="color: #666; text-align: center;">
             Saludos,<br>
             <strong>Erwin Martinez</strong><br>
-            <span style="color: #4F46E5;">Desarrollador Web Fullstack</span>
+            <span style="color: #4F46E5;">Desarrollador Web Fullstack</span><br>
+            📧 plazaerwin41@gmail.com | 📱 +52 464 112 3632
           </p>
         </div>
       `,
     };
 
     // Enviar emails con mejor manejo de errores
-    console.log("Enviando email principal...");
-    await transporter.sendMail(mailOptionsToYou);
+    console.log("📧 Enviando email principal...");
+    const result1 = await transporter.sendMail(mailOptionsToYou);
+    console.log("✅ Email principal enviado:", result1.messageId);
 
-    console.log("Enviando email de confirmación...");
-    await transporter.sendMail(mailOptionsToUser);
+    console.log("📧 Enviando email de confirmación...");
+    const result2 = await transporter.sendMail(mailOptionsToUser);
+    console.log("✅ Email de confirmación enviado:", result2.messageId);
 
-    console.log("Emails enviados correctamente:", { nombre, email });
+    // Cerrar el transporter
+    transporter.close();
+
+    console.log("🎉 Proceso completado exitosamente");
 
     return new Response(
       JSON.stringify({
         success: true,
         message: "Mensaje enviado correctamente",
+        messageIds: [result1.messageId, result2.messageId],
       }),
       {
         status: 200,
@@ -137,17 +165,21 @@ export async function POST(request) {
       },
     );
   } catch (error) {
-    console.error("Error detallado:", {
+    console.error("💥 Error detallado:", {
       message: error.message,
       code: error.code,
-      stack: error.stack,
+      command: error.command,
+      stack:
+        process.env.NODE_ENV === "development"
+          ? error.stack
+          : "Stack oculto en producción",
     });
 
     return new Response(
       JSON.stringify({
         error: "Error interno del servidor",
-        details:
-          process.env.NODE_ENV === "development" ? error.message : undefined,
+        message: error.message,
+        code: error.code || "UNKNOWN_ERROR",
       }),
       {
         status: 500,
