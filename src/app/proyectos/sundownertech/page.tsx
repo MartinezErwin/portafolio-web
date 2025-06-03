@@ -9,8 +9,9 @@ export default function page() {
           SundownerTech
         </h1>
         <p className="max-w-2xl mx-auto text-base theme-text opacity-80 sm:text-xl">
-          Un sitio web que muestra mis habilidades y proyectos como
-          desarrollador web fullstack
+          Sitio web administrable para SundownerTech: Empresa de instalaciones
+          de cámaras de seguridad y GPS. Implementé todo el frontend y backend
+          para gestionar clientes, proyectos e instalaciones.
         </p>
       </section>
 
@@ -31,8 +32,10 @@ export default function page() {
                 Diseño UI/UX
               </h3>
               <p className="text-sm theme-text opacity-80 sm:text-base">
-                Diseñé la interfaz completa utilizando principios de UX y diseño
-                moderno
+                Definí el flujo de navegación para que los usuarios puedan
+                conocer servicios, ver casos de éxito y solicitar cotizaciones.
+                Creé una interfaz limpia y profesional con Tailwind CSS, basada
+                en la identidad visual de SundownerTech.
               </p>
             </div>
 
@@ -46,8 +49,15 @@ export default function page() {
                 Desarrollo Frontend
               </h3>
               <p className="text-sm theme-text opacity-80 sm:text-base">
-                Implementé con React, Next.js y Tailwind CSS para una
-                experiencia fluida
+                Implementé todas las vistas en React + Inertia.js, incluyendo:
+                <br />
+                • Página de inicio con slider de proyectos.
+                <br />
+                • Sección de Productos, Servicios, Colecciones, Contacto, Acerca
+                de y blog.
+                <br />• Formulario de contacto y solicitud de cotización en
+                tiempo real.
+                <br />• Blog administrable con Filament.
               </p>
             </div>
 
@@ -61,8 +71,13 @@ export default function page() {
                 Backend & Deploy
               </h3>
               <p className="text-sm theme-text opacity-80 sm:text-base">
-                Configuré la infraestructura backend y el despliegue
-                automatizado
+                Construí el backend con Laravel 10 y Filament para:
+                <br />
+                • Gestión de clientes y proyectos.
+                <br />
+                • CRUD de instalaciones para subir productos, camaras, gps.
+                <br />• Administración de usuarios con permisos (técnicos,
+                administrador).
               </p>
             </div>
           </div>
@@ -85,8 +100,10 @@ export default function page() {
                   Análisis y Planificación
                 </h4>
                 <p className="text-sm theme-text opacity-80 sm:text-base">
-                  Definí los requisitos del proyecto y creé wireframes
-                  iniciales.
+                  Reuní requisitos con el cliente (SundownerTech): mapeé
+                  servicios (cámaras, GPS), roles (administrador, técnico),
+                  flujos de cotización y seguimiento de instalaciones. Esbocé
+                  wireframes en Figma para validar estructura y navegación.
                 </p>
               </div>
             </div>
@@ -100,8 +117,11 @@ export default function page() {
                   Desarrollo Iterativo
                 </h4>
                 <p className="text-sm theme-text opacity-80 sm:text-base">
-                  Implementé las funcionalidades por módulos utilizando
-                  metodología ágil.
+                  Creé el backend en Laravel 10 con Filament Resources para
+                  CRUDs de clientes, proyectos e instalaciones. Después construí
+                  cada vista en React + Inertia.js, probando constantemente
+                  validaciones, componentes reutilizables y la integración con
+                  la API.
                 </p>
               </div>
             </div>
@@ -115,7 +135,9 @@ export default function page() {
                   Testing y Optimización
                 </h4>
                 <p className="text-sm theme-text opacity-80 sm:text-base">
-                  Realicé pruebas exhaustivas y optimicé el rendimiento.
+                  Realicé pruebas funcionales (formularios de cotización) y
+                  corregí errores de validación. Optimicé consultas Eloquent y
+                  configuré jobs para manejar notificaciones por email.
                 </p>
               </div>
             </div>
@@ -128,12 +150,14 @@ export default function page() {
           Explora el código
         </h3>
         <p className="max-w-2xl mx-auto mb-6 text-sm theme-text-secondary opacity-80 sm:mb-8 sm:text-base">
-          Todo el código fuente está disponible en GitHub. Puedes revisar la
-          implementación, las tecnologías utilizadas y el historial de commits.
+          Todo el código fuente de la web administrable de SundownerTech está
+          disponible en GitHub.
         </p>
         <a
-          href="https://github.com/SundownerTech/app-sundownertech.git"
+          href="https://github.com/SundownerTech/app-sundownertech"
           className="inline-flex items-center gap-2 px-6 py-2 text-sm font-semibold transition-colors rounded-lg theme-bg theme-text hover:opacity-80 sm:gap-3 sm:px-8 sm:py-3 sm:text-base"
+          target="_blank"
+          rel="noopener noreferrer"
         >
           <svg
             className="w-5 h-5 sm:h-6 sm:w-6"

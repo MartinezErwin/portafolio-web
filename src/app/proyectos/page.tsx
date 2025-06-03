@@ -38,7 +38,7 @@ export default function SundownertechProyecto() {
                   target="_blank"
                   className="flex-1 px-4 py-2 font-medium text-center transition-all duration-200 rounded-lg btn-primary"
                 >
-                  Ver Demo
+                  Ver
                 </Link>
                 <Link
                   href={proyecto.detailPage}
