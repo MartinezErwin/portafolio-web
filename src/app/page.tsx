@@ -12,32 +12,32 @@ export default function Home() {
         DESARROLLADOR WEB FULLSTACK
       </h1>
 
-      <div className="flex flex-wrap justify-center gap-2 mx-4 sm:mx-8 lg:mx-60">
+      <div className="mx-4 flex flex-wrap justify-center gap-2 sm:mx-8 lg:mx-60">
         {tecnologias.map((tech) => (
           <span
             key={tech.name}
-            className="flex items-center gap-2 px-3 py-1 text-sm font-semibold rounded-full theme-bg-secondary theme-text-secondary"
+            className="theme-bg-secondary theme-text-secondary flex items-center gap-2 rounded-full px-3 py-1 text-sm font-semibold"
           >
             <Image
               width={4}
               height={4}
               src={tech.icon}
               alt={tech.alt}
-              className="w-4 h-4"
+              className="h-4 w-4"
             />
             #{tech.name}
           </span>
         ))}
       </div>
 
-      <div className="flex items-center justify-center w-32 h-32 mt-6 overflow-hidden rounded-full theme-bg-secondary sm:h-52 sm:w-52">
+      <div className="theme-bg-secondary mt-6 flex h-32 w-32 items-center justify-center overflow-hidden rounded-full sm:h-52 sm:w-52">
         <Image
           src="/perfil.png"
           alt="Perfil de Erwin"
           width={100}
           height={100}
           priority
-          className="object-contain w-24 sm:w-40"
+          className="w-24 object-contain sm:w-40"
         />
       </div>
 
@@ -46,8 +46,8 @@ export default function Home() {
       </h2>
 
       <div className="w-full">
-        <div className="flex flex-col items-center justify-center p-6 rounded-lg theme-bg-secondary min-h-40 sm:h-60 sm:p-10 lg:p-15">
-          <p className="px-2 text-sm font-semibold text-center theme-text-secondary sm:px-10 sm:text-base lg:px-52 lg:text-lg">
+        <div className="theme-bg-secondary flex min-h-40 flex-col items-center justify-center rounded-lg p-6 sm:h-60 sm:p-10 lg:p-15">
+          <p className="theme-text-secondary px-2 text-center text-sm font-semibold sm:px-10 sm:text-base lg:px-52 lg:text-lg">
             Soy un apasionado desarrollador web fullstack con experiencia en
             tecnologías modernas. Me encanta crear aplicaciones web que sean
             funcionales y atractivas. Además, soy una persona comprometida con
@@ -56,12 +56,12 @@ export default function Home() {
           </p>
           <div className="py-3">
             <Link
-              className="inline-flex items-center gap-2 px-6 py-3 font-semibold transition-all duration-300 border-2 rounded-lg theme-text-secondary border-white/30 bg-white/10 backdrop-blur-sm hover:border-white/50 hover:bg-white/20 hover:shadow-lg"
+              className="theme-text-secondary inline-flex items-center gap-2 rounded-lg border-2 border-white/30 bg-white/10 px-6 py-3 font-semibold backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20 hover:shadow-lg"
               href="/cv.pdf"
               target="_blank"
             >
               <svg
-                className="w-5 h-5"
+                className="h-5 w-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -78,16 +78,16 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="w-full max-w-md px-4 py-6 mx-auto mt-8 bg-gray-200 shadow-lg rounded-2xl sm:mt-12 sm:max-w-lg lg:mt-16 lg:max-w-6xl lg:px-8">
+        <div className="mx-auto mt-8 w-full max-w-md rounded-2xl bg-gray-200 px-4 py-6 shadow-lg sm:mt-12 sm:max-w-lg lg:mt-16 lg:max-w-6xl lg:px-8">
           <Titles title="Proyectos" />
           <ProjectSlider />
           <hr className="my-10 border-t-2 border-gray-400" />
           <Titles title="Estudios" />
-          <p className="px-20 text-lg font-semibold text-center text-gray-700">
+          <p className="px-20 text-center text-lg font-semibold text-gray-700">
             Tsu En Área De Desarrollo Y Software:{" "}
             <span className="text-blue-500">Concluido</span> {""}
           </p>
-          <p className="px-20 mt-4 text-lg font-semibold text-center text-gray-700">
+          <p className="mt-4 px-20 text-center text-lg font-semibold text-gray-700">
             Ingeneria En Area de Desarrollo Y Software Multiplataforma:{" "}
             <span className="text-blue-500">Concluido</span>
           </p>
