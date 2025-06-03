@@ -2,6 +2,13 @@ import nodemailer from "nodemailer";
 
 export async function POST(request) {
   try {
+    // Log para debug en Vercel
+    console.log("Variables de entorno disponibles:", {
+      EMAIL_USER: process.env.EMAIL_USER ? "✓" : "✗",
+      EMAIL_PASS: process.env.EMAIL_PASS ? "✓" : "✗",
+      EMAIL_TO: process.env.EMAIL_TO ? "✓" : "✗",
+    });
+
     const body = await request.json();
     const { nombre, email, mensaje } = body;
 
@@ -10,9 +17,23 @@ export async function POST(request) {
         JSON.stringify({ error: "Faltan datos requeridos" }),
         {
           status: 400,
-          headers: {
-            "Content-Type": "application/json",
-          },
+          headers: { "Content-Type": "application/json" },
+        },
+      );
+    }
+
+    // Verificar variables de entorno
+    if (
+      !process.env.EMAIL_USER ||
+      !process.env.EMAIL_PASS ||
+      !process.env.EMAIL_TO
+    ) {
+      console.error("Variables de entorno faltantes");
+      return new Response(
+        JSON.stringify({ error: "Configuración del servidor incompleta" }),
+        {
+          status: 500,
+          headers: { "Content-Type": "application/json" },
         },
       );
     }
@@ -21,19 +42,27 @@ export async function POST(request) {
     if (!emailRegex.test(email)) {
       return new Response(JSON.stringify({ error: "Email inválido" }), {
         status: 400,
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       });
     }
 
-    const transporter = nodemailer.createTransport({
-      service: "gmail",
+    // Configuración mejorada para Vercel
+    const transporter = nodemailer.createTransporter({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
+      tls: {
+        rejectUnauthorized: false,
+      },
     });
+
+    // Verificar conexión
+    await transporter.verify();
+    console.log("Conexión SMTP verificada correctamente");
 
     const mailOptionsToYou = {
       from: process.env.EMAIL_USER,
@@ -54,14 +83,6 @@ export async function POST(request) {
               ${mensaje.replace(/\n/g, "<br>")}
             </div>
           </div>
-          <div style="background-color: #f0f9ff; padding: 15px; border-radius: 8px; margin-top: 20px;">
-            <p style="margin: 0; color: #1e40af; font-size: 14px;">
-              💡 <strong>Tip:</strong> Puedes responder directamente a este email para contactar a ${nombre}
-            </p>
-          </div>
-          <p style="color: #666; font-size: 12px; margin-top: 20px;">
-            Este mensaje fue enviado desde tu formulario de contacto del portafolio web.
-          </p>
         </div>
       `,
     };
@@ -77,7 +98,7 @@ export async function POST(request) {
           </h2>
           <div style="background-color: #f0f9ff; padding: 20px; border-radius: 8px; margin: 20px 0;">
             <p>Hola <strong>${nombre}</strong>,</p>
-            <p>He recibido tu mensaje y me pondré en contacto contigo lo antes posible, generalmente respondo en un plazo de 24-48 horas.</p>
+            <p>He recibido tu mensaje y me pondré en contacto contigo lo antes posible.</p>
           </div>
           
           <div style="background-color: #f9fafb; padding: 20px; border-radius: 8px; margin: 20px 0;">
@@ -87,32 +108,20 @@ export async function POST(request) {
             </div>
           </div>
 
-          <div style="text-align: center; margin: 30px 0;">
-            <p style="color: #666;">Mientras tanto, puedes revisar mi trabajo en:</p>
-            <div style="margin: 15px 0;">
-              <a href="https://github.com/ErwinPlaza064" style="display: inline-block; margin: 0 10px; color: #4F46E5; text-decoration: none;">
-                🔗 GitHub
-              </a>
-              <a href="https://linkedin.com/in/tu-perfil" style="display: inline-block; margin: 0 10px; color: #4F46E5; text-decoration: none;">
-                🔗 LinkedIn
-              </a>
-            </div>
-          </div>
-
-          <hr style="margin: 30px 0; border: none; border-top: 1px solid #e5e7eb;">
-          
           <p style="color: #666; text-align: center;">
             Saludos,<br>
             <strong>Erwin Martinez</strong><br>
-            <span style="color: #4F46E5;">Desarrollador Web Fullstack</span><br>
-            📧 plazaerwin41@gmail.com<br>
-            📱 +52 464 112 3632
+            <span style="color: #4F46E5;">Desarrollador Web Fullstack</span>
           </p>
         </div>
       `,
     };
 
+    // Enviar emails con mejor manejo de errores
+    console.log("Enviando email principal...");
     await transporter.sendMail(mailOptionsToYou);
+
+    console.log("Enviando email de confirmación...");
     await transporter.sendMail(mailOptionsToUser);
 
     console.log("Emails enviados correctamente:", { nombre, email });
@@ -124,23 +133,25 @@ export async function POST(request) {
       }),
       {
         status: 200,
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       },
     );
   } catch (error) {
-    console.error("Error al enviar email:", error);
+    console.error("Error detallado:", {
+      message: error.message,
+      code: error.code,
+      stack: error.stack,
+    });
 
     return new Response(
       JSON.stringify({
-        error: "Error interno del servidor al enviar el mensaje",
+        error: "Error interno del servidor",
+        details:
+          process.env.NODE_ENV === "development" ? error.message : undefined,
       }),
       {
         status: 500,
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
       },
     );
   }

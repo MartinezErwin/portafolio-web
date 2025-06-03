@@ -158,7 +158,7 @@ export default function ContactPage() {
               <textarea
                 name="mensaje"
                 rows={6}
-                placeholder="Describe tu proyecto o idea..."
+                placeholder="Escribe tu mensaje"
                 value={formData.mensaje}
                 onChange={handleChange}
                 className="w-full resize-none rounded-xl border-2 border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 focus:outline-none"
