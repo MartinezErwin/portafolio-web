@@ -57,7 +57,9 @@ export default function Home() {
           <div className="py-3">
             <Link
               className="theme-text-secondary inline-flex items-center gap-2 rounded-lg border-2 border-white/30 bg-white/10 px-6 py-3 font-semibold backdrop-blur-sm transition-all duration-300 hover:border-white/50 hover:bg-white/20 hover:shadow-lg"
-              href="/cv.pdf"
+              href={"Aun no disponible"}
+              rel="noopener noreferrer"
+              download
               target="_blank"
             >
               <svg
