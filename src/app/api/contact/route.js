@@ -4,6 +4,7 @@ export async function POST(request) {
   try {
     // Log para debug en Vercel
     console.log("=== INICIO DEBUG ===");
+    console.log("Nodemailer version:", nodemailer.version || "No disponible");
     console.log("Variables de entorno disponibles:", {
       EMAIL_USER: process.env.EMAIL_USER ? "✓" : "✗",
       EMAIL_PASS: process.env.EMAIL_PASS ? "✓" : "✗",
@@ -47,15 +48,19 @@ export async function POST(request) {
       });
     }
 
-    // Configuración específica para Gmail en Vercel
+    // Verificar si nodemailer tiene el método correcto
+    console.log("Tipo de nodemailer:", typeof nodemailer);
+    console.log("Métodos disponibles:", Object.keys(nodemailer));
+
+    // Configuración específica para Gmail en Vercel - MÉTODO CORRECTO
     console.log("Creando transporter con configuración Gmail...");
-    const transporter = nodemailer.createTransporter({
-      service: "gmail", // Usar el servicio predefinido de Gmail
+    const transporter = nodemailer.createTransport({
+      // SIN 'r' al final
+      service: "gmail",
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS,
       },
-      // Configuraciones adicionales para Vercel
       pool: true,
       maxConnections: 1,
       rateDelta: 20000,
@@ -169,10 +174,8 @@ export async function POST(request) {
       message: error.message,
       code: error.code,
       command: error.command,
-      stack:
-        process.env.NODE_ENV === "development"
-          ? error.stack
-          : "Stack oculto en producción",
+      name: error.name,
+      stack: error.stack, // Mostrar stack completo para debug
     });
 
     return new Response(
