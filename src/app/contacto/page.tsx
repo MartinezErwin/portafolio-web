@@ -95,9 +95,9 @@ export default function ContactPage() {
           </h1>
           <CardContact />
 
-          <div className="d mx-auto mt-8 w-full max-w-md rounded-2xl bg-gray-200 px-4 py-6 shadow-lg sm:mt-12 sm:max-w-lg lg:mt-16 lg:max-w-6xl lg:px-8 dark:bg-white/10 dark:shadow-white/10">
+          <div className="d mx-auto mt-8 w-full max-w-md rounded-2xl bg-gray-200 px-4 py-6 text-black shadow-lg sm:mt-12 sm:max-w-lg lg:mt-16 lg:max-w-6xl lg:px-8 dark:bg-white/10 dark:shadow-white/10">
             <div className="mx-auto max-w-2xl">
-              <h3 className="theme-text text-center [font-family:var(--font-jomhuria)] text-5xl font-normal sm:text-6xl lg:text-6xl">
+              <h3 className="lg:theme-text text-center [font-family:var(--font-jomhuria)] text-5xl font-normal text-black sm:text-6xl lg:text-6xl lg:text-black">
                 CONTACTAME
               </h3>
 
