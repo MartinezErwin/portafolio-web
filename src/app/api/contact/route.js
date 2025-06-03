@@ -5,7 +5,6 @@ export async function POST(request) {
     const body = await request.json();
     const { nombre, email, mensaje } = body;
 
-    // Validación básica
     if (!nombre || !email || !mensaje) {
       return new Response(
         JSON.stringify({ error: "Faltan datos requeridos" }),
@@ -18,7 +17,6 @@ export async function POST(request) {
       );
     }
 
-    // Validación de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return new Response(JSON.stringify({ error: "Email inválido" }), {
@@ -29,7 +27,6 @@ export async function POST(request) {
       });
     }
 
-    // Configuración del transporter de Nodemailer
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -38,11 +35,10 @@ export async function POST(request) {
       },
     });
 
-    // Email que recibirás (usando EMAIL_TO)
     const mailOptionsToYou = {
-      from: process.env.EMAIL_USER, // Tu email como remitente técnico
-      to: process.env.EMAIL_TO, // Tu email de destino (usando la variable EMAIL_TO)
-      replyTo: email, // Email del usuario para poder responder directamente
+      from: process.env.EMAIL_USER,
+      to: process.env.EMAIL_TO,
+      replyTo: email,
       subject: `Nuevo mensaje de contacto de ${nombre}`,
       html: `
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
@@ -70,7 +66,6 @@ export async function POST(request) {
       `,
     };
 
-    // Email de confirmación para el usuario
     const mailOptionsToUser = {
       from: process.env.EMAIL_USER,
       to: email,
@@ -117,7 +112,6 @@ export async function POST(request) {
       `,
     };
 
-    // Enviar ambos emails
     await transporter.sendMail(mailOptionsToYou);
     await transporter.sendMail(mailOptionsToUser);
 
