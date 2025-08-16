@@ -49,7 +49,7 @@ export default function CardContact() {
             </svg>
           </div>
           <h3 className="theme-text mb-2 font-bold">Teléfono</h3>
-          <Link href="tel:+524641123632" className="theme-text text-sm">
+          <Link href="tel:+524641226304" className="theme-text text-sm">
             +52 464 112 3632
           </Link>
         </div>
