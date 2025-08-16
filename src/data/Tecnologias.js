@@ -80,4 +80,9 @@ export const tecnologias = [
     icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg",
     alt: "Figma Icon",
   },
+  {
+    name: "Postman",
+    icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg",
+    alt: "Postman Icon",
+  },
 ];
